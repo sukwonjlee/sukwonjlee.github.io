@@ -5,40 +5,72 @@
 	<title>Sukwon IE590 HW2</title>
 	<meta charset="utf-8">
 	<meta name="viewpoint" content="width=device-width, initial-scale=1">
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<!-- Optional theme -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 </head>
 
 <body>
 	<div class="container">
-		<h1>Sukwon HW2</h1>	
+		<h1>Sukwon IE590 Spring2015</h1>
 
-		<table class="table table-striped">
+		<h2>HW2</h2>
+
+		<table id="grad_table" class="table table-striped">
 			<thead>
 				<tr>
-					<th>#</th>
-					<th>CONTENT</th>
+					<th>Name</th>
+					<th>GPA</th>
+					<th>GRE_V</th>
+					<th>GRE_Q</th>
+					<th>Essay</th>
+					<th>Recom</th>
 				</tr>	
 			</thead>
-
-			<tbody>
-				<tr>
-					<td></td>
-					<td></td>
-				</tr>
-			</tbody>
 		</table>
 	</div>
 
+	<script type="text/javascript">
+		// Refer to more details below
+		// http://stackoverflow.com/questions/5996805/jquery-json-to-table
+		$.getJSON('https://hivelab.org/static/students.json',function(data){
+				var table = $('#grad_table');
+
+				$.each(data, function(index, item) {
+					var table_row_start = $('<tr>');
+					var table_row_end = $('</tr>');
+
+					var table_data1 = $('<td>', {html: item.Name} );
+					table_row_start.append(table_data1);
+
+					var table_data2 = $('<td>', {html: item.GPA} );
+					table_row_start.append(table_data2);
+
+					var table_data3 = $('<td>', {html: item.GRE_V} );
+					table_row_start.append(table_data3);
+
+					var table_data4 = $('<td>', {html: item.GRE_Q} );
+					table_row_start.append(table_data4);
+
+					var table_data5 = $('<td>', {html: item.Essay} );
+					table_row_start.append(table_data5);
+
+					var table_data6 = $('<td>', {html: item.Recom} );
+					table_row_start.append(table_data6);
+
+					table.append(table_row_start);
+					table.append(table_row_end);
+				});
+		});
 
 
 
+	</script>
 </body>
 
 </html>
